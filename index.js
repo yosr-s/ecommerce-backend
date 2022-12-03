@@ -9,10 +9,6 @@ const RouteProvider=require("./routes/Provider.Route")
 const RouteGallery=require("./routes/Gallery.Route")
 const RouteSubcategory=require("./routes/Subcategory.Route")
 
-
-
-
-
 const db=require("./config/db") //appel de la base 
 const app = express()
 app.use(express.json()) //pour l'envoie de données sous forme de données json
