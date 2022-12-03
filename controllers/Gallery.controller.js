@@ -17,7 +17,7 @@ const GalleryController={
             } else {
             res.status(200).json({ status: 200, message: "created Gallery", data: items })
             }
-        })
+        }).select("-__v").populate("product","-__v")
 
     },
     update: function (req,res){

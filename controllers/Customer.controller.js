@@ -4,7 +4,7 @@ const CustomerController={
     create: function (req,res){
         CustomerModel.create(req.body,function(err,item){
             if (err){
-                res.status(406).json({status:406,message:"Customer not created",data:null})
+                res.status(406).json({status:406,message:"Customer not created" +err,data:null})
             }
             res.status(200).json({status:200,message:"created Customer",data:item})
         })
@@ -17,7 +17,7 @@ const CustomerController={
             } else {
             res.status(200).json({ status: 200, message: "created Customer", data: items })
             }
-        })
+        }).select("-__v").populate("orders","-__v")
 
     },
     update: function (req,res){

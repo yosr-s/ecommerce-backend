@@ -11,13 +11,12 @@ const CategoryController={
 
     },
     read: function (req,res){
-        CategoryModel.find({}, function (err, items) {
-            if (err) {
-                res.status(406).json({ status: 406, message: "Category not created", data: null })
-            } else {
-            res.status(200).json({ status: 200, message: "created Category", data: items })
+        CategoryModel.find({},function(err,items){
+            if(err){
+                res.json(err);
             }
-        })
+            res.json(items)
+        }).select("-__v").populate("subcategories","-__v")
 
     },
     update: function (req,res){
@@ -37,6 +36,8 @@ const CategoryController={
             res.status(200).json({ status: 200, message: "created Category", data: item })
         })
     },
+    
+
 
 
 

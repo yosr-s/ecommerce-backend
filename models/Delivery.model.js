@@ -1,4 +1,6 @@
 const mongoose = require('mongoose'); // Erase if already required
+//todo heritage
+const UserModel = require("./User.Model")
 
 // Declare the Schema of the Mongo model
 var deliverySchema = new mongoose.Schema({
@@ -16,5 +18,8 @@ var deliverySchema = new mongoose.Schema({
     
 });
 
+//todo heritage
+UserModel.discriminator("Delivery", deliverySchema)
+
 //Export the model
-module.exports = mongoose.model('Delivery', deliverySchema);
+module.exports = mongoose.model('Delivery');

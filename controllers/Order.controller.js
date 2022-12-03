@@ -17,7 +17,7 @@ const OrderController={
             } else {
             res.status(200).json({ status: 200, message: "created order", data: items })
             }
-        })
+        }).select("-__v").populate("products","-__v").populate("customer","-__v").populate("delivery","-__v")
 
     },
     update: function (req,res){

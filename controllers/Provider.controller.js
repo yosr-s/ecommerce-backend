@@ -17,7 +17,7 @@ const ProviderController={
             } else {
             res.status(200).json({ status: 200, message: "created Provider", data: items })
             }
-        })
+        }).select("-__v").populate("products","-__v")
 
     },
     update: function (req,res){

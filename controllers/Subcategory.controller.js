@@ -17,7 +17,7 @@ const SubcategoryController={
             } else {
             res.status(200).json({ status: 200, message: "created Subcategory", data: items })
             }
-        })
+        }).select("-__v").populate("category","-__v").populate("products","-__v")
 
     },
     update: function (req,res){

@@ -17,7 +17,7 @@ const ProductController={
             } else {
             res.status(200).json({ status: 200, message: "created product", data: items })
             }
-        })
+        }).select("-__v").populate("subcategory","-__v").populate("galleries","-__v").populate("provider","-__v").populate("orders","-__v")
 
     },
     update: function (req,res){
