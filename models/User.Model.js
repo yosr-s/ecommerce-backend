@@ -1,5 +1,8 @@
 const mongoose = require('mongoose'); // Erase if already required
 
+//! bcrypt
+const bcrypt = require('bcrypt');
+
 //todo heritage
 const baseOptions = {
     discriminatorKey: 'itemtype', // our discriminator key, could be anything
@@ -29,6 +32,12 @@ var userSchema = new mongoose.Schema({
         required:true,
     }
 }, baseOptions);
+
+//! bcrypt hash user password before saving into database
+userSchema.pre('save', function (next) {
+    this.password = bcrypt.hashSync(this.password, 10);
+    next();
+});
 
 //Export the model
 module.exports = mongoose.model('User', userSchema);

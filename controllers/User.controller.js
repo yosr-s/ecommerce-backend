@@ -1,42 +1,68 @@
-const UserModel = require("../models/User.Model")
+const UserModel = require("../models/User.Model");
+//! require bcrypt
+const bcrypt = require('bcrypt');
+//! require jsonwebtoken module 
+const jwt = require('jsonwebtoken');
+//! tokenlist
+const tokenList= {} 
 
-const UserController={
-    create: function (req,res){
-        UserModel.create(req.body,function(err,item){
-            if (err){
-                res.status(406).json({status:406,message:"user not created",data:null})
-            }
-            res.status(200).json({status:200,message:"created user",data:item})
-        })
 
-    },
-    read: function (req,res){
-        UserModel.find({}, function (err, items) {
+const UserController = {
+
+
+
+    authenticate: function (req, res, next) {
+        UserModel.findOne({ email: req.body.email }, function (err, userInfo) {
             if (err) {
-                res.status(406).json({ status: 406, message: "user not created", data: null })
+                next(err);
             } else {
-            res.status(200).json({ status: 200, message: "create user", data: items })
+                if (userInfo != undefined)
+                    if (bcrypt.compareSync(req.body.password, userInfo.password)) {
+                        const token = jwt.sign({ id: userInfo._id }, req.app.get('secretKey'), { expiresIn: '1h' });
+                        const refresh_token=jwt.sign({id:userInfo._id}, req.app.get('secretKey'),{ expiresIn: '2h' });
+                        tokenList[refresh_token]={refresh_token : refresh_token}
+                        console.log(tokenList)
+                        res.json({ status: "success", message: "user found!!!", data: { user: userInfo, token: token , refreshtoken:refresh_token} });
+                    } else {
+                        res.json({ status: "error", message: "Invalid email/password!!!", data: null });
+                    }
+                else {
+                    res.json({status:"error",message:"email not found!!!",data:null})
+                }
             }
-        })
-
+        });
     },
-    update: function (req,res){
-        UserModel.findByIdAndUpdate(req.params.id,req.body,{new:true}, function (err, item) {
-            if (err) {
-                res.status(406).json({ status: 406, message: "user not created"+err, data: null })
-            } else
-            res.status(200).json({ status: 200, message: "create user", data: item })
-        })
-
+    logout: function (req, res) {
+        if (req.body.refresh_token && req.body.refresh_token in tokenList) {
+            delete tokenList[req.body.refresh_token]
+            res.json({ status: "success", message: "log out !!!", data: null });
+        }
+        else {
+            res.json({ status: "success", message: "refresh token not found!!!", data: null });
+        }
     },
-    delete: function (req,res){
-        UserModel.findByIdAndDelete(req.params.id, function (err, item) {
-            if (err) {
-                res.status(406).json({ status: 406, message: "user not created", data: null })
-            }
-            res.status(200).json({ status: 200, message: "create user", data: item })
-        })
-    },
+    refresh: function (req, res) {
+        console.log('%cUser.Controller.js line:33 tokenList', 'color: #007ACC;', tokenList);
+        console.log(req.body.refresh_token)
+        if (req.body.refresh_token && req.body.refresh_token in tokenList) {
+            jwt.verify(req.body.refresh_token, req.app.get('secretKey'), function (err, decoded) {
+                if (err) {
+                    res.json({ status: "error", message: err.message, data: null });
+                } else {
+                    // add user id to request
+                    req.body.userId = decoded.id;
+                    const token = jwt.sign({ id: req.body.userId }, req.app.get('secretKey'), { expiresIn: '1h' });
+                    const refresh_token = jwt.sign({ id: req.body.userId }, req.app.get('secretKey'), { expiresIn: '2h' });
+                    tokenList[refresh_token] = { refresh_token: refresh_token }
+                    console.log(tokenList)
+                    res.json({ status: "success", message: "user found!!!", data: { token: token, refresh_token: refresh_token } });
+                }
+            });
+        }
+        else {
+            res.json({ status: "success", message: "refresh token not found!!!", data: null });
+        }
+    }
 
 
 

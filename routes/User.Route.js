@@ -1,8 +1,9 @@
 const UserController=require("../controllers/User.Controller");
 const express=require("express")
 const Router=express.Router();
-Router.post("/",UserController.create)
-Router.delete("/:id",UserController.delete) //ajouter le params
-Router.put("/:id",UserController.update)
-Router.get("/",UserController.read)
-module.exports=Router;
+//! authentification route
+Router.post('/authenticate', UserController.authenticate);
+Router.post('/logout', UserController.logout);
+Router.post('/refresh', UserController.refresh);
+
+module.exports=Router;  

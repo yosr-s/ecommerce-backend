@@ -8,20 +8,29 @@ const RouteDelivery=require("./routes/Delivery.Route")
 const RouteProvider=require("./routes/Provider.Route")
 const RouteGallery=require("./routes/Gallery.Route")
 const RouteSubcategory=require("./routes/Subcategory.Route")
+//todo middleware
+const auth=require("./middleware/auth")
+
+
 
 const db=require("./config/db") //appel de la base 
+var jwt = require('jsonwebtoken'); //! jwt
 const app = express()
+
+app.set('secretKey', 'nodeRestApi'); //! jwt secret token 
+
+
 app.use(express.json()) //pour l'envoie de données sous forme de données json
 const port = 3000
-app.use("/users",RouteUser) //**creation de route de users nb:c'est la meme de l'import en dessus
-app.use("/orders",RouteOrder) //todo route de order
-app.use("/products",RouteProduct) //! route de product
-app.use("/categories",RouteCategory) //**creation de route de category
-app.use("/customers",RouteCustomer) //todo route de customer
-app.use("/deliveries",RouteDelivery)
-app.use("/providers",RouteProvider)
-app.use("/galleries",RouteGallery)
-app.use("/subcategories",RouteSubcategory)
+app.use("/users", RouteUser) //**creation de route de users nb:c'est la meme de l'import en dessus
+app.use("/orders",auth, RouteOrder) //todo route de order
+app.use("/products", auth ,RouteProduct) //! route de product
+app.use("/categories",auth, RouteCategory) //**creation de route de category
+app.use("/customers",auth, RouteCustomer) //todo route de customer
+app.use("/deliveries",auth,RouteDelivery)
+app.use("/providers",auth, RouteProvider)
+app.use("/galleries",auth, RouteGallery)
+app.use("/subcategories",auth, RouteSubcategory)
 
 
 app.get('/', (req, res) => {
