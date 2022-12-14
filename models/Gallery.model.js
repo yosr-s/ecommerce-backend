@@ -12,7 +12,7 @@ var gallerySchema = new mongoose.Schema({
         ref:"Product"
     }
  
-    
+     
 });
 
 //Export the model

@@ -8,18 +8,19 @@ var customerSchema = new mongoose.Schema({
     localization:{
         type:String,
         required:true
+ 
     },
     orders: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Order"
     }]
 
- 
+  
     
 });
 
 //todo heritag
-UserModel.discriminator("Customer", customerSchema)
+UserModel.discriminator("Customer", customerSchema) 
 
 //Export the model //todo heritage
 module.exports = mongoose.model('Customer');

@@ -13,26 +13,33 @@ const baseOptions = {
 var userSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:true,
         unique:true,
+        required:true,
         index:true,
     },
     email:{
         type:String,
-        required:true,
         unique:true,
+        required:true
+
     },
     mobile:{
         type:String,
-        required:true,
         unique:true,
+        required:true
+
     },
     password:{
         type:String,
-        required:true,
-    }
-}, baseOptions);
+        required:true
 
+    },
+    photo:{
+        type:String,
+        require:true, 
+    }
+}, baseOptions);   
+ 
 //! bcrypt hash user password before saving into database
 userSchema.pre('save', function (next) {
     this.password = bcrypt.hashSync(this.password, 10);

@@ -13,7 +13,7 @@ const UserController = {
 
     authenticate: function (req, res, next) {
         UserModel.findOne({ email: req.body.email }, function (err, userInfo) {
-            if (err) {
+            if (err) { 
                 next(err);
             } else {
                 if (userInfo != undefined)
