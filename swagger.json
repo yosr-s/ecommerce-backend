@@ -23,6 +23,30 @@
         {
             "name": "Users",
             "description": "API for User in the system"
+        },
+        {
+            "name": "Orders",
+            "description": "API for orders in the system"
+        },
+        {
+            "name": "Products",
+            "description": "API for Products in the system"
+        },
+        {
+            "name": "Categories",
+            "description": "API for Categories in the system"
+        },
+        {
+            "name": "Deliveries",
+            "description": "API for Deliveries in the system"
+        },
+        {
+            "name": "Galleries",
+            "description": "API for Galleries in the system"
+        },
+        {
+            "name": "Subcategories",
+            "description": "API for Subcategories in the system"
         }
     ],
     "schemes": [
@@ -49,6 +73,65 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "add Customers in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Customers"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "update Customers in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Customers"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Customer to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "delete Customers in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Customers"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Customer to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
             }
         },"/providers": {
             "get": {
@@ -64,6 +147,63 @@
                         }
                     }
                 }
+            },"post": {
+                "tags": [
+                    "Providers"
+                ],
+                "summary": "add Providers in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Providers"
+                        }
+                    }
+                }
+            },"put": {
+                "tags": [
+                    "Providers"
+                ],
+                "summary": "update a Provider in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Providers"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Provider to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Providers"
+                ],
+                "summary": "delete a Provider in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Providers"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Provider to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
             }
         },"/users": {
             "get": {
@@ -75,12 +215,521 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Providers"
+                            "$ref": "#/definitions/Users"
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "add users in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "update users in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "delete users in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            }
+        },"/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Get all orders in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Orders"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "add orders in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Orders"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "update orders in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Orders"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of order to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "delete orders in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Orders"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of order to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            }
+        },
+        "Products":{
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get all products in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "add products in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "update products in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of product to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "delete products in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of product to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            }
+        },
+        "Categories":{
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get all categories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Categories"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "add categories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Categories"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "update categories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Categories"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of category to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "delete categories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Categories"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of category to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            }
+        },
+        "Deliveries":{
+            "get": {
+                "tags": [
+                    "Deliveries"
+                ],
+                "summary": "Get all deliveries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Deliveries"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Deliveries"
+                ],
+                "summary": "add deliveries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Deliveries"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Deliveries"
+                ],
+                "summary": "update deliveries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Deliveries"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of delivery to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Deliveries"
+                ],
+                "summary": "delete deliveries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Deliveries"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of delivery to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            }
+        },
+        "Galleries":{
+            "get": {
+                "tags": [
+                    "Galleries"
+                ],
+                "summary": "Get all galleries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Galleries"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Galleries"
+                ],
+                "summary": "add galleries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Galleries"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Galleries"
+                ],
+                "summary": "update galleries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Galleries"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of gallery to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Galleries"
+                ],
+                "summary": "delete galleries in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Galleries"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of gallery to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            }
+        },
+        "Subcategories":{
+            "get": {
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "Get all subcategories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Subcategories"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "add subcategories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Subcategories"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "update subcategories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Subcategories"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of subcategory to update",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
+            },"delete": {
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "delete subcategories in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Subcategories"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of subcategory to delete",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ]
             }
         }
+        
     },
     "definitions": {
         "Customer": {
@@ -140,6 +789,178 @@
         "Providers": {
             "type": "array",
             "$ref": "#/definitions/Provider"
+        },
+        "Product": {
+            "required": [
+                "name",
+                "_id",
+                "price",
+                "description",
+                "category",
+                "subcategory",
+                "provider"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "subcategory": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                }
+            }
+        },
+        "Products": {
+            "type": "array",
+            "$ref": "#/definitions/Product"
+        },
+        "Category": {
+            "required": [
+                "name",
+                "_id",
+                "description"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "Categories": {
+            "type": "array",
+            "$ref": "#/definitions/Category"
+        },
+        "Subcategory": {
+            "required": [
+                "name",
+                "_id",
+                "description",
+                "category"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                }
+            }
+        },
+        "Subcategories": {
+            "type": "array",
+            "$ref": "#/definitions/Subcategory"
+        },
+        "Gallery": {
+            "required": [
+                "name",
+                "_id",
+                "description",
+                "product"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "product": {
+                    "type": "string"
+                }
+            }
+        },
+        "Galleries": {
+            "type": "array",
+            "$ref": "#/definitions/Gallery"
+        },
+
+        "Order": {
+            "required": [
+                "name",
+                "_id",
+                "description",
+                "product"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "product": {
+                    "type": "string"
+                }
+            }
+        },
+        "Orders": {
+            "type": "array",
+            "$ref": "#/definitions/Order"
+        },
+        "Delivery":{
+            "required": [
+                "name",
+                "_id",
+                "description",
+                "product"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "product": {
+                    "type": "string"
+                }
+            }
+        },
+        "Deliveries": {
+            "type": "array",
+            "$ref": "#/definitions/Delivery"
         }
     }
+    
 }

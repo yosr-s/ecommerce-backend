@@ -13,6 +13,9 @@ const nodemailer=require('nodemailer')
 //todo middleware
 const auth=require("./middleware/auth")
 const upload=require("./middleware/uploads")
+//! swagger autogenerate
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 
 
@@ -46,10 +49,25 @@ app.get("/file/:img",function(req,res) {
   res.sendFile(__dirname+"/uploads/"+req.params.img)
 })
 
-//swagger
-const swaggerUi = require('swagger-ui-express');
+//todo swagger
+//const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+//!swagger autogenerate
+/*const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: 'Customer API',
+      description: 'Customer API Information',
+      contact: {
+        name: 'Amazing Developer'
+},
+      servers: ["http://localhost:3000"]
+}},
+  apis: ["index.js","./routes/*.js"]};
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));*/
 
 
 app.get('/', (req, res) => {
