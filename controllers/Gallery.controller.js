@@ -2,20 +2,14 @@ const GalleryModel = require("../models/Gallery.Model")
 
 const GalleryController={
     create: function (req,res){
+        req.body["url_photo"] = req.file.filename;
         GalleryModel.create(req.body,function(err,item){
-            if (req.file) { //**si il y a une image
-                const Gallery = new GalleryModel({
-                    url_photo: req.file.path,
-                    product: req.body.product
-                });
-                Gallery.save(function (err) {
-                    if (err) {
-                        res.status(406).json({ status: 406, message: "Gallery not created"+err, data: null })
-                    } else
-                    res.status(200).json({ status: 200, message: "create Gallery", data: Gallery })
-                })
+            if (err){    
+                res.status(406).json({status:406,message:"Gallery not created",data:null})
             }
+            res.status(200).json({status:200,message:"created Gallery",data:item})
         })
+
     },
     
     read: function (req,res){

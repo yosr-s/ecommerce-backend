@@ -2,6 +2,7 @@ const CustomerModel = require("../models/Customer.Model")
 
 const CustomerController={
     create: function (req,res){
+        req.body["photo"] = req.file.filename;
         CustomerModel.create(req.body,function(err,item){
             if (err){
                 res.status(406).json({status:406,message:"Customer not created" +err,data:null})

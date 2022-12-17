@@ -2,6 +2,7 @@ const DeliveryModel = require("../models/Delivery.Model")
 
 const DeliveryController={
     create: function (req,res){
+        req.body["photo"] = req.file.filename;
         DeliveryModel.create(req.body,function(err,item){
             if (err){
                 res.status(406).json({status:406,message:"Delivery not created",data:null})

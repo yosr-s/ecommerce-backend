@@ -33,13 +33,23 @@ app.use(express.json()) //pour l'envoie de données sous forme de données json
 const port = 3000
 app.use("/users", RouteUser) //**creation de route de users nb:c'est la meme de l'import en dessus
 app.use("/orders",auth, RouteOrder) //todo route de order
-app.use("/products", auth ,RouteProduct) //! route de product
+app.use("/products", auth,upload.array("files") ,RouteProduct) //! route de product
 app.use("/categories",auth, RouteCategory) //**creation de route de category
-app.use("/customers",auth,upload.single('photo'), RouteCustomer) //todo route de customer 
-app.use("/deliveries",auth,upload.single('photo'),RouteDelivery)
-app.use("/providers",auth,upload.single('photo'), RouteProvider)
-app.use("/galleries",auth,upload.single('url_photo'), RouteGallery)
+app.use("/customers",auth,upload.single('file'), RouteCustomer) //todo route de customer 
+app.use("/deliveries",auth,upload.single('file'),RouteDelivery)
+app.use("/providers",auth,upload.single('file'), RouteProvider)
+app.use("/galleries",auth,upload.single('file'), RouteGallery)   
 app.use("/subcategories",auth, RouteSubcategory)
+
+//todo route de lecture de fichier
+app.get("/file/:img",function(req,res) {
+  res.sendFile(__dirname+"/uploads/"+req.params.img)
+})
+
+//swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.get('/', (req, res) => {
@@ -49,3 +59,34 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+var transporter = nodemailer.createTransport({
+  service: 'hotmail',
+  auth: {
+    user: 'yosrsaidi24@outlook.com',
+    pass: 'Yosrinfinity'
+  }
+});
+/*var transporter = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "fc8d9cfb9565e9",
+    pass: "875bdfca22e31c"
+  }
+});*/
+
+var mailOptions = {
+  from: 'yosrsaidi24@outlook.com',
+  to: 'yosrsaidi1@gmail.com',
+  subject: 'sending email from nodejs',
+  text: 'that was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});

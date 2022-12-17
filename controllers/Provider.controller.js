@@ -2,6 +2,7 @@ const ProviderModel = require("../models/Provider.Model")
 
 const ProviderController={
     create: function (req,res){
+        req.body["photo"] = req.file.filename;
         ProviderModel.create(req.body,function(err,item){
             if (err){
                 res.status(406).json({status:406,message:"Provider not created",data:null})
