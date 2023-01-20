@@ -23,7 +23,11 @@ const swaggerUi = require('swagger-ui-express');
 const db=require("./config/db") //appel de la base 
 var jwt = require('jsonwebtoken'); //! jwt
 const bodyParser = require('body-parser')
+//! frontend cors
+const cors = require('cors')
 const app = express()
+//! frontend cors
+app.use(cors("*"))
 
 app.set('secretKey', 'nodeRestApi'); //! jwt secret token 
 //todo body parser for file limit 
@@ -37,12 +41,12 @@ const port = 3000
 app.use("/users", RouteUser) //**creation de route de users nb:c'est la meme de l'import en dessus
 app.use("/orders",auth, RouteOrder) //todo route de order
 app.use("/products", auth,upload.array("files") ,RouteProduct) //! route de product
-app.use("/categories",auth, RouteCategory) //**creation de route de category
+app.use("/categories",/* auth, */ RouteCategory) //**creation de route de category
 app.use("/customers",auth,upload.single('file'), RouteCustomer) //todo route de customer 
 app.use("/deliveries",auth,upload.single('file'),RouteDelivery)
 app.use("/providers",auth,upload.single('file'), RouteProvider)
 app.use("/galleries",auth,upload.single('file'), RouteGallery)   
-app.use("/subcategories",auth, RouteSubcategory)
+app.use("/subcategories", RouteSubcategory)
 
 //todo route de lecture de fichier
 app.get("/file/:img",function(req,res) {

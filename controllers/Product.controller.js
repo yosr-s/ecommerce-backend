@@ -46,9 +46,18 @@ const ProductController={
             res.status(200).json({ status: 200, message: "created product", data: item })
         })
     },
-
-
-
-
+    findById: function (req,res){
+        ProductModel.findOne({__id:req.params.id},function(err,item){
+         if(err){
+             res.json(err);
+         }
+         res.json(item)
+        })
+     }
 }
+   
+
+
+
+
 module.exports = ProductController
