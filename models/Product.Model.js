@@ -2,7 +2,11 @@ const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
 var productSchema = new mongoose.Schema({
-   
+
+    ref:{
+        type:String,
+        required:true
+    },
     price:{
         type:String,
         required:true
@@ -31,7 +35,11 @@ var productSchema = new mongoose.Schema({
     orders: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Order"
-    }]
+    }],
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Category"   
+    }
 
     
     

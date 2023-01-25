@@ -39,6 +39,7 @@ const GalleryController={
             res.status(200).json({ status: 200, message: "created Gallery", data: item })
         })
     },
+    
 
 
 

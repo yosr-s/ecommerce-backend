@@ -5,4 +5,5 @@ Router.post("/",SubcategoryController.create)
 Router.delete("/:id",SubcategoryController.delete) //ajouter le params
 Router.put("/:id",SubcategoryController.update)
 Router.get("/",SubcategoryController.read)
+Router.get("/:id",SubcategoryController.findById)
 module.exports=Router;

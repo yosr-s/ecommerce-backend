@@ -18,6 +18,11 @@ var categorySchema = new mongoose.Schema({
     subcategories: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Subcategory"
+    }],
+    
+    products: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Product"
     }]
     
 });

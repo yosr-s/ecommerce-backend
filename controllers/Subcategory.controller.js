@@ -37,6 +37,14 @@ const SubcategoryController={
             res.status(200).json({ status: 200, message: "created Subcategory", data: item })
         })
     },
+    findById: function (req,res){
+        SubcategoryModel.findOne({__id:req.params.id},function(err,item){
+         if(err){
+             res.json(err);
+         }
+         res.json(item)
+        })
+     }
 
 
 

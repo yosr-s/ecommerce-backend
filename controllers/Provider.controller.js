@@ -38,6 +38,14 @@ const ProviderController={
             res.status(200).json({ status: 200, message: "created Provider", data: item })
         })
     },
+    findById: function (req,res){
+        ProviderModel.findOne({__id:req.params.id},function(err,item){
+         if(err){
+             res.json(err);
+         }
+         res.json(item)
+        })
+     }
 
 
 

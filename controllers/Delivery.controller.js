@@ -38,6 +38,14 @@ const DeliveryController={
             res.status(200).json({ status: 200, message: "created Delivery", data: item })
         })
     },
+    findById: function (req,res){
+        DeliveryModel.findOne({__id:req.params.id},function(err,item){
+         if(err){
+             res.json(err);
+         }
+         res.json(item)
+        })
+     }
 
 
 

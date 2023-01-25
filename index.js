@@ -8,6 +8,7 @@ const RouteDelivery=require("./routes/Delivery.Route")
 const RouteProvider=require("./routes/Provider.Route")
 const RouteGallery=require("./routes/Gallery.Route")
 const RouteSubcategory=require("./routes/Subcategory.Route")
+const RouteAdmin=require("./routes/Admin.Route")
 //todo mailer
 const nodemailer=require('nodemailer')
 //todo middleware
@@ -39,15 +40,16 @@ app.use(bodyParser.json());
 app.use(express.json()) //pour l'envoie de données sous forme de données json
 const port = 3000
 app.use("/users", RouteUser) //**creation de route de users nb:c'est la meme de l'import en dessus
-app.use("/orders",auth, RouteOrder) //todo route de order
-app.use("/products", auth,upload.array("files") ,RouteProduct) //! route de product
-app.use("/categories",/* auth, */ RouteCategory) //**creation de route de category
-app.use("/customers",auth,upload.single('file'), RouteCustomer) //todo route de customer 
-app.use("/deliveries",auth,upload.single('file'),RouteDelivery)
-app.use("/providers",auth,upload.single('file'), RouteProvider)
-app.use("/galleries",auth,upload.single('file'), RouteGallery)   
-app.use("/subcategories", RouteSubcategory)
-
+app.use("/orders", RouteOrder) //todo route de order
+app.use("/products",upload.array("files") ,RouteProduct) //! route de product
+app.use("/categories",  RouteCategory) //**creation de route de category
+app.use("/customers",upload.single('file'), RouteCustomer) //todo route de customer 
+app.use("/deliveries",upload.single('file'),RouteDelivery)
+app.use("/providers",upload.single('file'), RouteProvider)  
+app.use("/galleries",upload.single('file'), RouteGallery)    
+app.use("/subcategories" ,RouteSubcategory)
+app.use("/admins",upload.single('file'), RouteAdmin) //**creation de route de admin
+  
 //todo route de lecture de fichier
 app.get("/file/:img",function(req,res) {
   res.sendFile(__dirname+"/uploads/"+req.params.img)
