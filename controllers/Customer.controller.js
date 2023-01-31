@@ -39,7 +39,7 @@ const CustomerController={
         })
     },
     findById: function (req,res){
-        CustomerModel.findOne({__id:req.params.id},function(err,item){
+        CustomerModel.findOne({_id:req.params.id},function(err,item){
          if(err){
              res.json(err);
          }

@@ -17,7 +17,7 @@ const GalleryController={
             if (err) {
                 res.status(406).json({ status: 406, message: "Gallery not created", data: null })
             } else {
-            res.status(200).json({ status: 200, message: "created Gallery", data: items })
+            res.status(200).json({ status: 200, message: " Gallery list", data: items })
             }
         }).select("-__v").populate("product","-__v")
 

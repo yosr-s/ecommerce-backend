@@ -37,7 +37,7 @@ const CategoryController={
         })
     },
     findById: function (req,res){
-       CategoryModel.findOne({__id:req.params.id},function(err,item){
+       CategoryModel.findOne({_id:req.params.id},function(err,item){
         if(err){
             res.json(err);
         }

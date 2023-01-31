@@ -22,9 +22,9 @@ const UserController = {
                         const refresh_token=jwt.sign({id:userInfo._id}, req.app.get('secretKey'),{ expiresIn: '2h' });
                         tokenList[refresh_token]={refresh_token : refresh_token}
                         console.log(tokenList)
-                        res.json({ status: "success", message: "user found!!!", data: { user: userInfo, token: token , refreshtoken:refresh_token} });
+                        res.status(200).json({ status: "success", message: "user found!!!", data: { user: userInfo, token: token , refreshtoken:refresh_token} });
                     } else {
-                        res.json({ status: "error", message: "Invalid email/password!!!", data: null });
+                        res.status(400).json({ status: "error", message: "Invalid email/password!!!", data: null });
                     }
                 else {
                     res.json({status:"error",message:"email not found!!!",data:null})

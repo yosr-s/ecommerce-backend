@@ -47,7 +47,7 @@ const ProductController={
         })
     },
     findById: function (req,res){
-        ProductModel.findOne({__id:req.params.id},function(err,item){
+        ProductModel.findOne({_id:req.params.id},function(err,item){
          if(err){
              res.json(err);
          }

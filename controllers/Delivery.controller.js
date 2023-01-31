@@ -39,7 +39,7 @@ const DeliveryController={
         })
     },
     findById: function (req,res){
-        DeliveryModel.findOne({__id:req.params.id},function(err,item){
+        DeliveryModel.findOne({_id:req.params.id},function(err,item){
          if(err){
              res.json(err);
          }

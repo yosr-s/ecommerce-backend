@@ -39,7 +39,7 @@ const AdminController={
         })
     },
     findById: function (req,res){
-        AdminModel.findOne({__id:req.params.id},function(err,item){
+        AdminModel.findOne({_id:req.params.id},function(err,item){
          if(err){
              res.json(err);
          }

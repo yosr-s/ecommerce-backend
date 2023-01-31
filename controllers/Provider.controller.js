@@ -39,7 +39,7 @@ const ProviderController={
         })
     },
     findById: function (req,res){
-        ProviderModel.findOne({__id:req.params.id},function(err,item){
+        ProviderModel.findOne({_id:req.params.id},function(err,item){
          if(err){
              res.json(err);
          }

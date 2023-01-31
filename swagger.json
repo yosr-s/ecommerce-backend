@@ -107,7 +107,7 @@
                         "in": "path",
                         "description": "ID of Customer to update",
                         "required": true,
-                        "type": "integer"
+                        "type": "string"
                     }
                 ]
             },"delete": {
@@ -129,7 +129,7 @@
                         "in": "path",
                         "description": "ID of Customer to delete",
                         "required": true,
-                        "type": "integer"
+                        "type": "string"
                     }
                 ]
             }
