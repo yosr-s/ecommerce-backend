@@ -6,4 +6,9 @@ Router.delete("/:id",ProductController.delete) //ajouter le params
 Router.put("/:id",ProductController.update)
 Router.get("/",ProductController.read)
 Router.get("/:id",ProductController.findById)
-module.exports=Router;
+Router.get("/category/:categoryName/subcategory/:subcategoryName",ProductController.getProductsByCategoryAndSubcategoryName)
+Router.get("/subcategory/:subcategoryName",ProductController.getProductsBySubcategoryName)
+//Router.get("/subcategory/:subcategoryName",ProductController.getProductsBySub)
+
+
+module.exports=Router;  

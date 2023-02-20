@@ -1,16 +1,27 @@
 const GalleryModel = require("../models/Gallery.Model")
+const ProductModel=require("../models/Product.Model")
 
 const GalleryController={
-    create: function (req,res){
+    create:  function (req,res){
+        console.log(req.body)
         req.body["url_photo"] = req.file.filename;
-        GalleryModel.create(req.body,function(err,item){
+        
+        GalleryModel.create(req.body,async function(err,item){
             if (err){    
                 res.status(406).json({status:406,message:"Gallery not created",data:null})
             }
+            const product = await ProductModel.findOneAndUpdate(
+                {_id: req.body.product},
+                {$push: {galleries: item._id}},
+                {new: true}
+            );
+            if (!product) {
+                return res.status(406).json({status:406,message:"Product not found",data:null})
+            }
             res.status(200).json({status:200,message:"created Gallery",data:item})
         })
-
-    },
+    
+    },  
     
     read: function (req,res){
         GalleryModel.find({}, function (err, items) {
@@ -23,10 +34,26 @@ const GalleryController={
 
     },
     update: function (req,res){
-        GalleryModel.findByIdAndUpdate(req.params.id,req.body,{new:true}, function (err, item) {
+        req.body["url_photo"] = req.file.filename;
+        if (!req.file) { 
+            return res.status(400).json({
+                status: 400,
+                message: "No photo provided",
+                data: null,
+            });
+        }
+        GalleryModel.findByIdAndUpdate(req.params.id,req.body,{new:true},async function (err, item) {
             if (err) {
                 res.status(406).json({ status: 406, message: "Gallery not created"+err, data: null })
-            } else
+            } 
+            const product = await ProductModel.findOneAndUpdate(
+                {_id: req.body.product},
+                {$push: {galleries: item._id}},
+                {new: true}
+            );
+            if (!product) {
+                return res.status(406).json({status:406,message:"Product not found",data:null})
+            }
             res.status(200).json({ status: 200, message: "created Gallery", data: item })
         })
 

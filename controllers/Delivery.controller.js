@@ -22,6 +22,8 @@ const DeliveryController={
 
     },
     update: function (req,res){
+        req.body["photo"] = req.file.filename;
+        if(!req.file){return res.status(400).json({status:400,message:"No photo provided",data:null})}
         DeliveryModel.findByIdAndUpdate(req.params.id,req.body,{new:true}, function (err, item) {
             if (err) {
                 res.status(406).json({ status: 406, message: "Delivery not created"+err, data: null })

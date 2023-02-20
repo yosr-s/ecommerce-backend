@@ -35,20 +35,20 @@ app.set('secretKey', 'nodeRestApi'); //! jwt secret token
 app.use(bodyParser.urlencoded({
   extended: true
 })); 
-app.use(bodyParser.json());
+app.use(bodyParser.json());    
  
 app.use(express.json()) //pour l'envoie de données sous forme de données json
 const port = 3000
 app.use("/users", RouteUser) //**creation de route de users nb:c'est la meme de l'import en dessus
-app.use("/orders",auth, RouteOrder) //todo route de order
-app.use("/products",auth,upload.array("files") ,RouteProduct) //! route de product
-app.use("/categories",auth,  RouteCategory) //**creation de route de category
-app.use("/customers",auth,upload.single('file'), RouteCustomer) //todo route de customer 
+app.use("/orders", RouteOrder) //todo route de order
+app.use("/products",upload.array('files'),RouteProduct) //! route de product    
+app.use("/categories",  RouteCategory) //**creation de route de category
+app.use("/customers",upload.single('file'), RouteCustomer) //todo route de customer 
 app.use("/deliveries",auth,upload.single('file'),RouteDelivery)
-app.use("/providers",auth,upload.single('file'), RouteProvider)  
+app.use("/providers",upload.single('file'), RouteProvider)  
 app.use("/galleries",auth,upload.single('file'), RouteGallery)    
-app.use("/subcategories" ,auth,RouteSubcategory)
-app.use("/admins",auth, RouteAdmin) //**creation de route de admin
+app.use("/subcategories" ,RouteSubcategory)    
+app.use("/admins", RouteAdmin) //**creation de route de admin    
   
 //todo route de lecture de fichier
 app.get("/file/:img",function(req,res) {
@@ -79,6 +79,24 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));*/
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+
+// express doesn't consider not found 404 as an error so we need to handle 404 explicitly
+// handle 404 error
+app.use(function(req, res, next) {
+  let err = new Error('Not Found');
+     err.status = 404;
+     next(err);
+ });
+ // handle errors
+ app.use(function(err, req, res, next) {
+  console.log(err);
+  
+   if(err.status === 404)
+    res.status(404).json({message: "Not found"});
+   else 
+     res.status(500).json({message: "Something looks wrong :( !!!"});
+ });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

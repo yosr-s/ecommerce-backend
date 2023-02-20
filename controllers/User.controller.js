@@ -18,8 +18,8 @@ const UserController = {
             } else {
                 if (userInfo != undefined)
                     if (bcrypt.compareSync(req.body.password, userInfo.password)) {
-                        const token = jwt.sign({ id: userInfo._id }, req.app.get('secretKey'), { expiresIn: '1h' });
-                        const refresh_token=jwt.sign({id:userInfo._id}, req.app.get('secretKey'),{ expiresIn: '2h' });
+                        const token = jwt.sign({ id: userInfo._id }, req.app.get('secretKey'), { expiresIn: '5s' });
+                        const refresh_token=jwt.sign({id:userInfo._id}, req.app.get('secretKey'),{ expiresIn: '10s' });
                         tokenList[refresh_token]={refresh_token : refresh_token}
                         console.log(tokenList)
                         res.status(200).json({ status: "success", message: "user found!!!", data: { user: userInfo, token: token , refreshtoken:refresh_token} });

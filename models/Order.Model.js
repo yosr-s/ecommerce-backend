@@ -5,7 +5,6 @@ var orderSchema = new mongoose.Schema({
    
     contenu:{
         type:String,
-        required:true
     },
     prix:{
         type:String,
@@ -18,7 +17,7 @@ var orderSchema = new mongoose.Schema({
     },
     products: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref:"Product"
+        ref:"Product"         
     }],
     customer: {
         type: mongoose.Schema.Types.ObjectId,
@@ -29,7 +28,7 @@ var orderSchema = new mongoose.Schema({
         ref:"Delivery"
     }
     
-});
-
+});  
+     
 //Export the model
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Order', orderSchema);    

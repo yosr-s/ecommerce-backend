@@ -12,6 +12,7 @@ const CustomerController={
 
     },
     read: function (req,res){
+        
         CustomerModel.find({}, function (err, items) {
             if (err) {
                 res.status(406).json({ status: 406, message: "Customer not created", data: null })
@@ -22,6 +23,8 @@ const CustomerController={
 
     },
     update: function (req,res){
+        req.body["photo"] = req.file.filename;
+        if(!req.file){return res.status(400).json({status:400,message:"No photo provided",data:null})}
         CustomerModel.findByIdAndUpdate(req.params.id,req.body,{new:true}, function (err, item) {
             if (err) {
                 res.status(406).json({ status: 406, message: "Customer not created"+err, data: null })

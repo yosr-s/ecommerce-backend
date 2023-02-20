@@ -1,4 +1,4 @@
-const ProviderModel = require("../models/Provider.Model")
+const ProviderModel = require("../models/Provider.model")
 
 const ProviderController={
     create: function (req,res){
@@ -22,6 +22,14 @@ const ProviderController={
 
     },
     update: function (req,res){
+        req.body["photo"] = req.file.filename;
+        if (!req.file) {
+            return res.status(400).json({
+                status: 400,
+                message: "No photo provided",
+                data: null,
+            });
+        }
         ProviderModel.findByIdAndUpdate(req.params.id,req.body,{new:true}, function (err, item) {
             if (err) {
                 res.status(406).json({ status: 406, message: "Provider not created"+err, data: null })

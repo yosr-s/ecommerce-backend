@@ -10,7 +10,6 @@ var subcategorySchema = new mongoose.Schema({
   
     description:{
         type:String,
-        required:true
         
     },
     category: {
@@ -21,7 +20,7 @@ var subcategorySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:"Product"
     }]
-    
+                      
 });
 
 //Export the model
